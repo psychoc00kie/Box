@@ -1,6 +1,6 @@
 package platform;
 
-public class box extends user{
+public class box extends user {
 
     int boxId;
     int address;

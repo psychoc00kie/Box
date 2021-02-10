@@ -1,11 +1,9 @@
 package platform;
 
 import java.sql.*;
-import java.util.Date;
 import java.util.LinkedList;
 
 public class mainPlatform {
-
 
 
     public static void main(String[] args) throws SQLException {
@@ -25,17 +23,14 @@ public class mainPlatform {
         LinkedList<shipment> bddEnvios = new LinkedList<shipment>();
         LinkedList<purchase> bddVentas = new LinkedList<purchase>();
 
-    init(bddClientes,bddUsuarios,bddProductos,bddBot,bddBox,bddEnvios,bddVentas);
+        init(bddClientes, bddUsuarios, bddProductos, bddBot, bddBox, bddEnvios, bddVentas);
 
-    compra(bddVentas,bddProductos,1,1,3);
-
-
-
+        compra(bddVentas, bddProductos, 1, 1, 3);
 
 
     }
 
-    public static void init (LinkedList<client> bddClientes,LinkedList<user> bddUsuarios,LinkedList<product> bddProductos,LinkedList<bot> bddBot,LinkedList<box> bddBox,LinkedList<shipment> bddEnvios,LinkedList<purchase> bddVentas) throws SQLException {
+    public static void init(LinkedList<client> bddClientes, LinkedList<user> bddUsuarios, LinkedList<product> bddProductos, LinkedList<bot> bddBot, LinkedList<box> bddBox, LinkedList<shipment> bddEnvios, LinkedList<purchase> bddVentas) throws SQLException {
 
         /*
         LLENAMOS LAS TABLAS CON EL CONTENIDO DE LAS BASES DE DATOS
@@ -47,8 +42,7 @@ public class mainPlatform {
         Connection conn = DriverManager.getConnection(myUrl, "root", "root");
 
         // Import Products.
-        try
-        {
+        try {
             // our SQL SELECT query.
             // if you only need a few columns, specify them by name instead of using "*"
             String query = "SELECT * FROM products";
@@ -60,30 +54,26 @@ public class mainPlatform {
             ResultSet rs = st.executeQuery(query);
 
             // iterate through the java resultset
-            while (rs.next())
-            {
+            while (rs.next()) {
                 int id = rs.getInt("id");
                 String name = rs.getString("Product Name");
-                Double price = (rs.getDouble("Sale Price")/100);
+                Double price = (rs.getDouble("Sale Price") / 100);
                 int stock = rs.getInt("stock");
 
-                product _product = new product(id,name,price,stock);
+                product _product = new product(id, name, price, stock);
                 bddProductos.add(_product);
                 // print the results
-                System.out.format("id: %d name: %s price: %f units in Stock: %d \n", _product.getId(),_product.getName(),_product.getPrice(),_product.getStock());
+                System.out.format("id: %d name: %s price: %f units in Stock: %d \n", _product.getId(), _product.getName(), _product.getPrice(), _product.getStock());
             }
             st.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         }
 
         // IMPORT CLIENTS
 
-        try
-        {
+        try {
             // our SQL SELECT query.
             // if you only need a few columns, specify them by name instead of using "*"
             String query = "SELECT * FROM users";
@@ -97,14 +87,13 @@ public class mainPlatform {
             // iterate through the java resultset
             int max_users = 1000;
             int count = 0;
-            while (rs.next() && count<max_users)
-            {
+            while (rs.next() && count < max_users) {
                 int id = rs.getInt("id");
                 String name = rs.getString("name");
                 String pass = rs.getString("password");
                 int type = rs.getInt("type");
 
-                user _user = new user(id,name,pass,type);
+                user _user = new user(id, name, pass, type);
                 //_user.setRandType();
                 // _user.setPasw();
                 /*
@@ -114,14 +103,12 @@ public class mainPlatform {
                  * contraseña fuerte. */
 
                 // print the results
-                System.out.format("ID: %d Name: %s Pass: %s Type: %d  \n", _user.id,_user.name,_user.password,_user.type);
+                System.out.format("ID: %d Name: %s Pass: %s Type: %d  \n", _user.id, _user.name, _user.password, _user.type);
                 bddUsuarios.add(_user);
                 count++;
             }
             st.close();
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.err.println("Got an exception! ");
             System.err.println(e.getMessage());
         }
@@ -163,9 +150,9 @@ public class mainPlatform {
         System.out.println("*******************");
 
         // Clientes
-        for (int i = 0;i<bddUsuarios.size();i++) {
+        for (int i = 0; i < bddUsuarios.size(); i++) {
             int id = bddUsuarios.get(i).getType();
-            if (id == 2 ) {
+            if (id == 2) {
                 System.out.println(bddUsuarios.get(i).toString());
                 user u = bddUsuarios.get(i);
                 client aux = new client(u.id, u.name, u.password, bddClientes.size());
@@ -183,12 +170,12 @@ public class mainPlatform {
         System.out.println("*******************");
 
         // Bots
-        for (int i = 0;i<bddUsuarios.size();i++) {
+        for (int i = 0; i < bddUsuarios.size(); i++) {
             int id = bddUsuarios.get(i).getType();
-            if (id == 3 ) {
+            if (id == 3) {
                 System.out.println(bddUsuarios.get(i).toString());
                 user u = bddUsuarios.get(i);
-                bot aux = new bot(u.id,u.name,u.password,u.type,bddBot.size(),0);
+                bot aux = new bot(u.id, u.name, u.password, u.type, bddBot.size(), 0);
                 bddBot.add(aux);
             }
         }
@@ -198,29 +185,27 @@ public class mainPlatform {
         System.out.println("*******************");
 
         // BOX
-        for (int i = 0;i<bddUsuarios.size();i++) {
+        for (int i = 0; i < bddUsuarios.size(); i++) {
             int id = bddUsuarios.get(i).getType();
-            if (id == 4 ) {
+            if (id == 4) {
                 System.out.println(bddUsuarios.get(i).toString());
                 user u = bddUsuarios.get(i);
-                box aux = new box(u.id,u.name,u.password,u.type,bddBot.size(),0,0);
+                box aux = new box(u.id, u.name, u.password, u.type, bddBot.size(), 0, 0);
                 bddBox.add(aux);
             }
         }
     }
 
-    public static void compra(LinkedList<purchase> bddVentas, LinkedList<product> bddProductos, int idProd, int idClient, int cant)
-    {
-            for(int i=0; i<bddProductos.size();i++){
-                if (bddProductos.get(i).getId() == idProd)
-                {
-                    double total_price = bddProductos.get(i).getPrice()*cant;
-                    purchase compra = new purchase(bddVentas.size(),idClient,idProd,cant,total_price);
-                    bddVentas.add(compra);
+    public static void compra(LinkedList<purchase> bddVentas, LinkedList<product> bddProductos, int idProd, int idClient, int cant) {
+        for (int i = 0; i < bddProductos.size(); i++) {
+            if (bddProductos.get(i).getId() == idProd) {
+                double total_price = bddProductos.get(i).getPrice() * cant;
+                purchase compra = new purchase(bddVentas.size(), idClient, idProd, cant, total_price);
+                bddVentas.add(compra);
 
-                    System.out.println(compra.toString());
-                }
+                System.out.println(compra.toString());
             }
+        }
     }
 }
 

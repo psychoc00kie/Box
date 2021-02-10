@@ -11,7 +11,7 @@ public class purchase {
     int units;
     double price;
 
-    public purchase(int id,int _client, int _prouduct, int units, double price) {
+    public purchase(int id, int _client, int _prouduct, int units, double price) {
 
         this.id = id;
         this.date = new Date();

@@ -4,7 +4,7 @@ import java.util.Random;
 
 public class user {
 
-    int id;
+    int id;             // id for the user
     String name;
     String password;
     int type;           // 0 Admin company usser, 1 company regular user , 2 client , 3 bot, 4 box
@@ -16,23 +16,23 @@ public class user {
         this.type = type;
     }
 
-    public void setPasw(){
-            int leftLimit = 48; // numeral '0'
-            int rightLimit = 122; // letter 'z'
-            int targetStringLength = 10;
-            Random random = new Random();
+    public void setPasw() {
+        int leftLimit = 48; // numeral '0'
+        int rightLimit = 122; // letter 'z'
+        int targetStringLength = 10;
+        Random random = new Random();
 
-            String generatedString = random.ints(leftLimit, rightLimit + 1)
-                    .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
-                    .limit(targetStringLength)
-                    .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
-                    .toString();
+        String generatedString = random.ints(leftLimit, rightLimit + 1)
+                .filter(i -> (i <= 57 || i >= 65) && (i <= 90 || i >= 97))
+                .limit(targetStringLength)
+                .collect(StringBuilder::new, StringBuilder::appendCodePoint, StringBuilder::append)
+                .toString();
 
-            System.out.println("The password: "+generatedString+" has ben assigned to user: "+id+"\n");
-            password = generatedString;
+        System.out.println("The password: " + generatedString + " has ben assigned to user: " + id + "\n");
+        password = generatedString;
     }
 
-    public void setRandType(){
+    public void setRandType() {
 
         //  GENERAMOS TYPOS ADICIONALES PARA USUARIOS DE PRUEBA
         Random rand = new Random(); //instance of random class
