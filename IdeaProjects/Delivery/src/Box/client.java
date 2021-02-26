@@ -1,8 +1,5 @@
 package Box;
-<<<<<<< HEAD
-=======
 
->>>>>>> cb56707 (updated project for IDEA IntelIJ)
 import java.io.*;
 import java.net.*;
 
@@ -10,10 +7,7 @@ public class client {
     public static void main(String[] args) throws IOException {
 
 
-<<<<<<< HEAD
 
-=======
->>>>>>> cb56707 (updated project for IDEA IntelIJ)
         String hostName = "127.0.0.1";
         int portNumber = 8888;
 
