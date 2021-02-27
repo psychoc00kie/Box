@@ -166,7 +166,7 @@ public class mainPlatform {
          */
 
         System.out.println("*******************");
-        System.out.println("****BOTS*******");
+        System.out.println("********BOTS*******");
         System.out.println("*******************");
 
         // Bots
@@ -181,7 +181,7 @@ public class mainPlatform {
         }
 
         System.out.println("*******************");
-        System.out.println("****BOX*******");
+        System.out.println("*********BOX*******");
         System.out.println("*******************");
 
         // BOX
