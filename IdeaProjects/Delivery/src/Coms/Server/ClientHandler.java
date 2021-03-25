@@ -9,7 +9,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 
 // ClientHandler class
-class ClientHandler extends Thread
+class ClientHandler extends Thread  // Este sera el gestionador del protocolo y la interaccion server-client
 {
     DateFormat fordate = new SimpleDateFormat("yyyy/MM/dd");
     DateFormat fortime = new SimpleDateFormat("hh:mm:ss");

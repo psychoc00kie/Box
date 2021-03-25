@@ -6,6 +6,12 @@ import java.util.*;
 import java.net.*;
 
 // Server class
+
+/*
+Propuesta para el protocolo :
+este se ejecutara completamente mediante el Client Handler donde tendremos un menú
+en el cual gestionaremos el estado del buzon según la opcion intdocucida.
+ */
 public class Server
 {
     public static void main(String[] args) throws IOException
